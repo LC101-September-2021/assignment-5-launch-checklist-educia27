@@ -3,16 +3,20 @@
 window.addEventListener("load", function() {
     
     let form = document.querySelector("form");
+    // let pilotInput = document.querySelector("input[name=pilotName]");
+    // let copilotInput = document.querySelector("input[name=copilotName]");
+    // let fuelInput = document.querySelector("input[name=fuelLevel]");
+    // let cargoInput = document.querySelector("input[name=cargoMass]");
     form.addEventListener("submit", function(event) {
-        let pilotInput = document.querySelector("input[name=pilotName]");
-        let copilotInput = document.querySelector("input[name=copilotName]");
-        let fuelInput = document.querySelector("input[name=fuelLevel]");
-        let cargoInput = document.querySelector("input[name=cargoMass]");
-        //(alert("submit clicked"));
-        if (pilotInput.value === "" || copilotInput.value === "" || fuelInput.value === "" || cargoInput.value === "") {
-            alert("All fields are required");
-            event.preventDefault();
-        }
+        // if (pilotInput.value === "" || copilotInput.value === "" || fuelInput.value === "" || cargoInput.value === "") {
+        //     alert("All fields are required");
+        //     //event.preventDefault();
+        // } else if (isNaN(fuelLevel.value) || isNaN(cargoInput.value)) {
+        //     alert("Values must contain numbers.");
+        // } else if (!isNaN(pilotInput.value) || !isNaN(copilotInput.value)) {
+        //     alert("Values must contain letters.");
+        //     event.preventDefault()
+        // }
     });
     
    let listedPlanets;
