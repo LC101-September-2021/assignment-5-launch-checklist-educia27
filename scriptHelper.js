@@ -1,22 +1,22 @@
 // Write your helper functions here!
  require('isomorphic-fetch');
 
-function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
+function addDestinationInfo(document, name, diameter, star, distance, moons, image) {
    // Here is the HTML formatting for our mission target div.
    
                 let mission = document.getElementById("missionTarget");
                 mission.innerHTML = 
                 `<h2>Mission Destination</h2>
                 <ol>
-                    <li>Name: ${name} </li>
-                    <li>Diameter: ${diameter} </li>
-                    <li>Star: ${star}</li>
+                    <li>${name} </li>
+                    <li>${diameter} </li>
+                    <li>${star}</li>
                     <li>Distance from Earth: ${distance}</li>
                     <li>Number of Moons: ${moons} </li>
                 </ol>
-                <img src= "${imageUrl}">`;
+                <img src= ${image}>`;
    
-}
+};
 
 function validateInput(testInput) {
      if (testInput === "") {
@@ -59,27 +59,33 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     } else if (isNaN(validateInput(fuelLevel)) || isNaN(validateInput(cargoLevel))) {
         alert("Values must contain numbers.");
     } else if (!isNaN(validateInput(pilot)) || !isNaN(validateInput(copilot))) {
-        alert("Values must contain letters.");
-        
-    } else {
+        alert("Values must contain letters.");    
+     } //else {
+    //     list.style.visibility = "visible";
+    //     pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+    //     copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch`;
+    // }
+
+    function weAreReady() {
         list.style.visibility = "visible";
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch`;
     }
 
     if (fuelLevel < 10000) {
-        list.style.visibility = "visible";
         launchStatus.innerHTML = "Shuttle not ready for launch";
         fuelStatus.innerHTML = "There is not enough fuel for the journey";
         launchStatus.style.color = "red";
+        weAreReady();
     } else if (cargoLevel > 10000) {
-        list.style.visibility = "visible";
         launchStatus.innerHTML = "Shuttle is not ready for launch";
         cargoStatus.innerHTML = "There is too much mass for the shuttle to take off";
         launchStatus.style.color = "red";
+        weAreReady();
     } else if (fuelLevel >= 10000 && cargoLevel <=10000) {
         launchStatus.innerHTML =  "Shuttle is ready for launch";
         launchStatus.style.color = "green";
+        weAreReady();
     }
 }
 
@@ -91,7 +97,7 @@ async function myFetch() {
 }
 
 function pickPlanet(planets) {
-    let index  = Math.random() * planets.length
+    let index = Math.floor(Math.random() * planets.length);
     return planets[index]
 }
 

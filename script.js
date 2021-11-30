@@ -3,19 +3,25 @@
 //const { myFetch, pickPlanet, addDestinationInfo } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
-    
     let form = document.querySelector("form");
-    let pilotInput = document.querySelector("input[name=pilotName]");
-    pilot = pilotInput.value;
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        let list = document.getElementById("faultyItems");
 
-    let copilotInput = document.querySelector("input[name=copilotName]");
-    copilot = copilotInput.value;
+        let pilotInput = document.querySelector("input[name=pilotName]");
+        pilot = pilotInput.value;
 
-    let fuelInput = document.querySelector("input[name=fuelLevel]");
-    fuelLevel = fuelInput.value;
+        let copilotInput = document.querySelector("input[name=copilotName]");
+        copilot = copilotInput.value;
 
-    let cargoInput = document.querySelector("input[name=cargoMass]");
-    cargoLevel = cargoInput.value;
+        let fuelInput = document.querySelector("input[name=fuelLevel]");
+        fuelLevel = fuelInput.value;
+
+        let cargoInput = document.querySelector("input[name=cargoMass]");
+        cargoLevel = cargoInput.value;
+
+        formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
+    });
 
     let listedPlanets;
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
@@ -29,8 +35,9 @@ window.addEventListener("load", function() {
         addDestinationInfo(document, otherWorldly.name, otherWorldly.diameter, otherWorldly.star, otherWorldly.distance,otherWorldly.moons,otherWorldly.image);
     });
    
-    form.addEventListener("submit", function(event) {
-        //event.preventDefault();
+});
+
+ //event.preventDefault();
         // if (pilotInput.value === "" || copilotInput.value === "" || fuelInput.value === "" || cargoInput.value === "") {
         //     alert("All fields are required");
         //     //event.preventDefault();
@@ -39,10 +46,3 @@ window.addEventListener("load", function() {
         // } else if (!isNaN(pilotInput.value) || !isNaN(copilotInput.value)) {
         //     alert("Values must contain letters.");
         // }
-        event.preventDefault();
-        let list = document.getElementById("faultyItems");
-        formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
-
-    });
-   
-});
