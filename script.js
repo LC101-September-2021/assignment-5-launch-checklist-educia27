@@ -1,13 +1,36 @@
 // Write your JavaScript code here!
 
+//const { myFetch, pickPlanet, addDestinationInfo } = require("./scriptHelper");
+
 window.addEventListener("load", function() {
     
     let form = document.querySelector("form");
-    // let pilotInput = document.querySelector("input[name=pilotName]");
-    // let copilotInput = document.querySelector("input[name=copilotName]");
-    // let fuelInput = document.querySelector("input[name=fuelLevel]");
-    // let cargoInput = document.querySelector("input[name=cargoMass]");
+    let pilotInput = document.querySelector("input[name=pilotName]");
+    pilot = pilotInput.value;
+
+    let copilotInput = document.querySelector("input[name=copilotName]");
+    copilot = copilotInput.value;
+
+    let fuelInput = document.querySelector("input[name=fuelLevel]");
+    fuelLevel = fuelInput.value;
+
+    let cargoInput = document.querySelector("input[name=cargoMass]");
+    cargoLevel = cargoInput.value;
+
+    let listedPlanets;
+    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+    let listedPlanetsResponse = myFetch();
+ 
+    listedPlanetsResponse.then(function (result) {
+        listedPlanets = result;
+        console.log(listedPlanets);
+    }).then(function () {
+        let otherWorldly = pickPlanet(listedPlanets)
+        addDestinationInfo(document, otherWorldly.name, otherWorldly.diameter, otherWorldly.star, otherWorldly.distance,otherWorldly.moons,otherWorldly.image);
+    });
+   
     form.addEventListener("submit", function(event) {
+        //event.preventDefault();
         // if (pilotInput.value === "" || copilotInput.value === "" || fuelInput.value === "" || cargoInput.value === "") {
         //     alert("All fields are required");
         //     //event.preventDefault();
@@ -15,19 +38,11 @@ window.addEventListener("load", function() {
         //     alert("Values must contain numbers.");
         // } else if (!isNaN(pilotInput.value) || !isNaN(copilotInput.value)) {
         //     alert("Values must contain letters.");
-        //     event.preventDefault()
         // }
+        event.preventDefault();
+        let list = document.getElementById("faultyItems");
+        formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
+
     });
-    
-   let listedPlanets;
-   // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse;
-   listedPlanetsResponse.then(function (result) {
-       listedPlanets = result;
-       console.log(listedPlanets);
-   }).then(function () {
-       console.log(listedPlanets);
-       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-   })
    
 });
