@@ -29,19 +29,15 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    list = document.getElementById("faultyItems");
+    list = document.querySelector("#faultyItems");
 
-    let pilotInput = document.querySelector("input[name=pilotName]");
-    pilot = pilotInput.value;
+    pilot= document.querySelector("input[name=pilotName]").value;
+    
+    copilot = document.querySelector("input[name=copilotName]").value;
+    
+    fuelLevel = document.querySelector("input[name=fuelLevel]").value;
 
-    let copilotInput = document.querySelector("input[name=copilotName]");
-    copilot = copilotInput.value;
-
-    let fuelInput = document.querySelector("input[name=fuelLevel]");
-    fuelLevel = fuelInput.value;
-
-    let cargoInput = document.querySelector("input[name=cargoMass]");
-    cargoLevel = cargoInput.value;
+    cargoLevel = document.querySelector("input[name=cargoMass]").value;
 
     let pilotStatus = document.getElementById("pilotStatus");
 
@@ -53,6 +49,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     let launchStatus = document.getElementById("launchStatus");
     
+    let liftOff = true;
 
     if (validateInput(pilot) === "" || validateInput(copilot) === "" || validateInput(fuelLevel) === "" || validateInput(cargoLevel) === "") {
         alert("All fields are required");
@@ -60,33 +57,38 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         alert("Values must contain numbers.");
     } else if (!isNaN(validateInput(pilot)) || !isNaN(validateInput(copilot))) {
         alert("Values must contain letters.");    
-     } //else {
-    //     list.style.visibility = "visible";
-    //     pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
-    //     copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch`;
-    // }
+    }
+    
 
     function weAreReady() {
         list.style.visibility = "visible";
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch`;
     }
-
-    if (fuelLevel < 10000) {
-        launchStatus.innerHTML = "Shuttle not ready for launch";
+    
+   if (fuelLevel < 10000) {
         fuelStatus.innerHTML = "There is not enough fuel for the journey";
+        launchStatus.innerHTML =  "Shuttle is not ready for launch";
         launchStatus.style.color = "red";
         weAreReady();
-    } else if (cargoLevel > 10000) {
-        launchStatus.innerHTML = "Shuttle is not ready for launch";
+   } else {
+       fuelStatus.innerHTML = "There is enough fuel for the journey";
+       launchStatus.innerHTML =  "Shuttle is ready for launch";
+       launchStatus.style.color = "green";
+       
+   }
+
+   if (cargoLevel > 10000) {
         cargoStatus.innerHTML = "There is too much mass for the shuttle to take off";
+        launchStatus.innerHTML =  "Shuttle is not ready for launch";
         launchStatus.style.color = "red";
         weAreReady();
-    } else if (fuelLevel >= 10000 && cargoLevel <=10000) {
+   } else {
+        cargoStatus.innerHTML = "Mass is low enough for the shuttle to take off";
         launchStatus.innerHTML =  "Shuttle is ready for launch";
         launchStatus.style.color = "green";
-        weAreReady();
-    }
+   }
+
 }
 
 async function myFetch() {
