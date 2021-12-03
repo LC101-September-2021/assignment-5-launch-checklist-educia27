@@ -23,7 +23,7 @@ function validateInput(testInput) {
          return "Empty";
      } else if (isNaN(testInput)) {
          return "Not a number";
-     } else  {
+     } else {
          return "Is a number";
      }
 }
@@ -51,11 +51,11 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     
     let liftOff = true;
 
-    if (validateInput(pilot) === "" || validateInput(copilot) === "" || validateInput(fuelLevel) === "" || validateInput(cargoLevel) === "") {
+    if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
         alert("All fields are required");
-    } else if (isNaN(validateInput(fuelLevel)) || isNaN(validateInput(cargoLevel))) {
+    } else if ((validateInput(fuelLevel) === "Not a number") || validateInput(cargoLevel) === "Not a number") {
         alert("Values must contain numbers.");
-    } else if (!isNaN(validateInput(pilot)) || !isNaN(validateInput(copilot))) {
+    } else if ((validateInput(pilot) === "Is a number") || validateInput(copilot) === "Is a number") {
         alert("Values must contain letters.");    
     }
     
@@ -64,32 +64,32 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         list.style.visibility = "visible";
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch`;
-    }
+    };
     
    if (fuelLevel < 10000) {
+        liftOff = false
         fuelStatus.innerHTML = "There is not enough fuel for the journey";
-        launchStatus.innerHTML =  "Shuttle is not ready for launch";
-        launchStatus.style.color = "red";
-        weAreReady();
    } else {
-       fuelStatus.innerHTML = "There is enough fuel for the journey";
-       launchStatus.innerHTML =  "Shuttle is ready for launch";
-       launchStatus.style.color = "green";
-       
+       fuelStatus.innerHTML = "There is enough fuel for the journey";   
    }
 
    if (cargoLevel > 10000) {
+        liftOff = false;
         cargoStatus.innerHTML = "There is too much mass for the shuttle to take off";
-        launchStatus.innerHTML =  "Shuttle is not ready for launch";
-        launchStatus.style.color = "red";
-        weAreReady();
    } else {
         cargoStatus.innerHTML = "Mass is low enough for the shuttle to take off";
-        launchStatus.innerHTML =  "Shuttle is ready for launch";
-        launchStatus.style.color = "green";
-   }
+   };
 
-}
+   if (liftOff) {
+    launchStatus.innerHTML =  "Shuttle is ready for launch";
+    launchStatus.style.color = "green";
+    weAreReady();
+   } else {
+    launchStatus.innerHTML =  "Shuttle is not ready for launch";
+    launchStatus.style.color = "red";
+    weAreReady();
+   }
+};
 
 async function myFetch() {
     const planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {

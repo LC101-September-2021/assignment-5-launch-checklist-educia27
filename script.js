@@ -6,7 +6,6 @@ window.addEventListener("load", function() {
     let form = document.querySelector("form");
     let list = document.querySelector("#faultyItems");
     form.addEventListener("submit", function(event) {
-        event.preventDefault();
        // let list = document.querySelector("#faultyItems");
 
         let pilot= document.querySelector("input[name=pilotName]").value;
@@ -14,6 +13,7 @@ window.addEventListener("load", function() {
         let fuelLevel = document.querySelector("input[name=fuelLevel]").value;
         let cargoLevel = document.querySelector("input[name=cargoMass]").value;
         formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
+        event.preventDefault();
     });
 
     let listedPlanets;
@@ -29,13 +29,3 @@ window.addEventListener("load", function() {
     });
    
 });
-
- //event.preventDefault();
-        // if (pilotInput.value === "" || copilotInput.value === "" || fuelInput.value === "" || cargoInput.value === "") {
-        //     alert("All fields are required");
-        //     //event.preventDefault();
-        // } else if (isNaN(fuelLevel.value) || isNaN(cargoInput.value)) {
-        //     alert("Values must contain numbers.");
-        // } else if (!isNaN(pilotInput.value) || !isNaN(copilotInput.value)) {
-        //     alert("Values must contain letters.");
-        // }
