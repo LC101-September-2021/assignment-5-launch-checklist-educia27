@@ -4,9 +4,8 @@
 
 window.addEventListener("load", function() {
     let form = document.querySelector("form");
-    let list = document.querySelector("#faultyItems");
     form.addEventListener("submit", function(event) {
-       // let list = document.querySelector("#faultyItems");
+        let list = document.querySelector("#faultyItems");
 
         let pilot= document.querySelector("input[name=pilotName]").value;
         let copilot = document.querySelector("input[name=copilotName]").value;
