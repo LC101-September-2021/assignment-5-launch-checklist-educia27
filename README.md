@@ -15,6 +15,15 @@ Validation example in ScriptHelper.js:
     }
 ```
 
+DOM Manipulation:
+```javascript
+cargoLevel = document.querySelector("input[name=cargoMass]").value;
+
+    let pilotStatus = document.getElementById("pilotStatus");
+
+    let copilotStatus = document.getElementById("copilotStatus");
+```
+
 Furthermore, I used DOM manipulation to update the CSS stylings. Lastly, I fetch planetary JSON data to update where the shuttle is headed. 
 
 
