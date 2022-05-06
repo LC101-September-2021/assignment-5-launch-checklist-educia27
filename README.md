@@ -1,7 +1,7 @@
 # Eddy Tamayo educia27 JavaScript DOM Manipulation and Fetching Data
 
 
-This sample is using knowledge about forms, the DOM, and HTTP. With the use of PreventDefault() function to prevent a request from being sent out and the page reloading. There is also validation to ensure that the user entered a value for each field. querySelector was used as well as eventlisteners
+This codebase deals with a checklist form and this checklist is successful if appropriate values are given within the input fields. Validation is implemented to make sure correct values are inserted. It also fetches planetary data for view once the user successfully inputs correct data. This sample is using knowledge about forms, the DOM, and HTTP. With the use of PreventDefault() function to prevent a request from being sent out and the page reloading. There is also validation to ensure that the user entered a value for each field. querySelector was used as well as eventlisteners
 within the codebase: script.js
 
 Validation example in ScriptHelper.js: 
