@@ -24,6 +24,16 @@ cargoLevel = document.querySelector("input[name=cargoMass]").value;
     let copilotStatus = document.getElementById("copilotStatus");
 ```
 
+Fetching JSON:
+``` javascript
+async function myFetch() {
+    const planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+        return response.json()
+    });
+    return planetsReturned;
+}
+```
+
 Furthermore, I used DOM manipulation to update the CSS stylings. Lastly, I fetch planetary JSON data to update where the shuttle is headed. 
 
 
