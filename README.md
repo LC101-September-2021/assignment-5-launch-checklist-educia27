@@ -1,4 +1,4 @@
-# assignment-5-launch-checklist-educia27
+# Eddy Tamayo educia27 JS DOM Manipulation and Fetching Data
 
 
 This sample is using knowledge about forms, the DOM, and HTTP. With the use of PreventDefault() function to prevent a request from being sent out and the page 
