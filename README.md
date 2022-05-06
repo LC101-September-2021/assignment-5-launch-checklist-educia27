@@ -4,7 +4,7 @@
 This sample is using knowledge about forms, the DOM, and HTTP. With the use of PreventDefault() function to prevent a request from being sent out and the page reloading. There is also validation to ensure that the user entered a value for each field. querySelector was used as well as eventlisteners
 within the codebase: script.js
 
-Validation example: 
+Validation example in ScriptHelper.js: 
 ```javascript
  if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
         alert("All fields are required");
